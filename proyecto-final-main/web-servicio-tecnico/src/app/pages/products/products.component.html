@@ -1,0 +1,30 @@
+<section class="py-16">
+    <h2 class="text-3xl font-bold text-center">Nuestros Productos</h2>
+    <div class="flex flex-col md:flex-row mt-8">
+      <!-- Categorías -->
+      <aside class="w-full md:w-1/4 p-4 bg-base-200 rounded-md shadow-md">
+        <h3 class="text-xl font-bold mb-4">Categorías</h3>
+        <ul class="menu">
+          <li *ngFor="let category of categories" [ngClass]="{'bg-primary/70 text-dark': categoria === category.idCategoria}">
+            <a (click)="filterCategory(category.idCategoria)">{{ category.nombre }}</a>
+          </li>
+          <li *ngIf="categoria">
+            <a (click)="clear()">Limpiar</a>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Productos -->
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ml-0 md:ml-8 mt-8 md:mt-0">
+        <div *ngFor="let producto of productos" class="card shadow-lg">
+          <div class="card-body">
+            <img [src]="producto.imagen"  class="w-full h-full object-cover rounded-lg">
+            <h3 class="card-title">{{ producto.nombre }}</h3>
+            <p>{{ producto.descripcion }}</p>
+            <p class="text-primary font-bold">${{ producto.precio }}</p>
+            <button *ngIf="_auth.isClient" class="btn btn-primary" (click)="addCart(producto)">Agregar al Carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

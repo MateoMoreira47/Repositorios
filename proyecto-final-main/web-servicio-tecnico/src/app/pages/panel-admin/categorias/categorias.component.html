@@ -1,0 +1,51 @@
+<div class="flex flex-col items-center mt-10">
+    <!-- Formulario de Registro -->
+    <div class="card bg-base-100 shadow-xl w-full max-w-md p-6 mb-10">
+        <h2 class="text-2xl font-bold text-center mb-4">Registrar Categoría</h2>
+
+        <form [formGroup]="categoriaForm" (ngSubmit)="onSubmit()">
+            <!-- Nombre -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Nombre de la Categoría</span>
+                </label>
+                <input type="text" class="input input-bordered" formControlName="nombre"
+                    placeholder="Ingrese el nombre de la categoría" />
+                <span *ngIf="categoriaForm.get('nombre')?.invalid && categoriaForm.get('nombre')?.touched"
+                    class="text-red-500 text-sm">
+                    El nombre es obligatorio.
+                </span>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="form-control mt-6">
+                <button type="submit" class="btn btn-primary" [disabled]="categoriaForm.invalid">
+                    Registrar Categoría
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabla de Categorías -->
+    <div class="overflow-x-auto w-full max-w-2xl">
+        <h3 class="text-xl font-bold text-center mb-4">Lista de Categorías</h3>
+        <table class="table table-zebra w-full">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let categoria of categorias">
+                    <td>{{ categoria.idCategoria }}</td>
+                    <td>{{ categoria.nombre }}</td>
+
+                </tr>
+                <tr *ngIf="categorias.length === 0">
+                    <td colspan="2" class="text-center">No hay categorías registradas</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

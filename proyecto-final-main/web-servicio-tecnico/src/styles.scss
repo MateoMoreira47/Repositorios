@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.toast-alert{
+    position: fixed;
+    max-width: 400px;
+    top: 10px;
+    right: 10px;
+}

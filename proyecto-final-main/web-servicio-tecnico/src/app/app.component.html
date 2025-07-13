@@ -1,0 +1,44 @@
+<header class="bg-base-200 shadow-md">
+  <div class="navbar container mx-auto">
+    <div class="flex-1">
+      <a [routerLink]="[routes.HOME]" routerLinkActive="router-link-active" class="btn btn-ghost normal-case text-xl">Servicio Técnico</a>
+    </div>
+    <div class="flex-none">
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </label>
+        <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+          <li><a [routerLink]="['/'+routes.SERVICES]" routerLinkActive="router-link-active">Servicios</a></li>
+          <li><a [routerLink]="['/'+routes.ABOUT]" routerLinkActive="router-link-active">Acerca de</a></li>
+          <!-- <li><a href="#contacto">Contacto</a></li> -->
+          <li><a [routerLink]="['/'+routes.PRODUCTS]" routerLinkActive="router-link-active">Productos</a></li>
+          <li><a [routerLink]="['/'+routes.LOGIN]" routerLinkActive="router-link-active">Iniciar Sesión</a></li>
+        </ul>
+      </div>
+      <ul class="menu menu-horizontal hidden lg:flex px-1">
+        <li><a [routerLink]="['/'+routes.SERVICES]" routerLinkActive="router-link-active">Servicios</a></li>
+        <li><a  [routerLink]="['/'+routes.ABOUT]" routerLinkActive="router-link-active">Acerca de</a></li>
+        <!-- <li><a href="#contacto">Contacto</a></li> -->
+        <li><a [routerLink]="['/'+routes.PRODUCTS]" routerLinkActive="router-link-active">Productos</a></li>
+
+        @if (user) {
+          <li><a [routerLink]="['/'+routes.PANEL_CLIENT]" routerLinkActive="router-link-active">Panel</a></li>
+          <li *ngIf="user.role == 'CLIENTE'"><a [routerLink]="['/'+routes.CARRITO]" routerLinkActive="router-link-active">Carrito de compras</a></li>
+        } @else {
+          <li><a [routerLink]="['/'+routes.LOGIN]" routerLinkActive="router-link-active">Iniciar Sesión</a></li>
+        }
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="container mx-auto py-10">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="bg-base-300 py-4 text-center">
+  <p class="text-sm text-gray-600">© 2025 Servicio Técnico. Todos los derechos reservados.</p>
+</footer>

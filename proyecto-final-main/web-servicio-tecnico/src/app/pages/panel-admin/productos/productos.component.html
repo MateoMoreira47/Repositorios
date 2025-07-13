@@ -1,0 +1,130 @@
+<div class="flex flex-col items-center mt-10">
+    <!-- Formulario de Registro -->
+    <div class="card bg-base-100 shadow-xl w-full max-w-md p-6 mb-10">
+        <h2 class="text-2xl font-bold text-center mb-4">Registrar Producto</h2>
+
+        <form [formGroup]="productoForm" (ngSubmit)="onSubmit()">
+            <!-- Nombre -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Nombre del Producto</span>
+                </label>
+                <input type="text" class="input input-bordered" formControlName="nombre"
+                    placeholder="Ingrese el nombre del producto" />
+                <span *ngIf="productoForm.get('nombre')?.invalid && productoForm.get('nombre')?.touched"
+                    class="text-red-500 text-sm">
+                    El nombre es obligatorio.
+                </span>
+            </div>
+
+            <!-- IMAGEN -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Imagen del Producto</span>
+                </label>
+                <input type="text" class="input input-bordered" formControlName="imagen"
+                    placeholder="Ingrese la url de la imagen del producto" />
+                <span *ngIf="productoForm.get('imagen')?.invalid && productoForm.get('imagen')?.touched"
+                    class="text-red-500 text-sm">
+                    La imagen es obligatoria.
+                </span>
+            </div>
+
+
+            <!-- Descripción -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Descripción</span>
+                </label>
+                <textarea class="textarea textarea-bordered" formControlName="descripcion"
+                    placeholder="Ingrese la descripción del producto">
+          </textarea>
+            </div>
+
+            <!-- Precio -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Precio</span>
+                </label>
+                <input type="number" class="input input-bordered" formControlName="precio"
+                    placeholder="Ingrese el precio del producto" />
+                <span *ngIf="productoForm.get('precio')?.invalid && productoForm.get('precio')?.touched"
+                    class="text-red-500 text-sm">
+                    El precio debe ser un valor positivo.
+                </span>
+            </div>
+
+            <!-- Stock -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Stock</span>
+                </label>
+                <input type="number" class="input input-bordered" formControlName="stock"
+                    placeholder="Ingrese la cantidad en stock" />
+                <span *ngIf="productoForm.get('stock')?.invalid && productoForm.get('stock')?.touched"
+                    class="text-red-500 text-sm">
+                    El stock debe ser un valor no negativo.
+                </span>
+            </div>
+
+            <!-- Categoría -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Categoría</span>
+                </label>
+                <select class="input input-bordered" formControlName="categoria_id">
+                    <option *ngFor="let categoria of categorias" [value]="categoria.idCategoria"> {{categoria.nombre }}</option>
+                </select>
+                <span *ngIf="productoForm.get('categoria_id')?.invalid && productoForm.get('categoria_id')?.touched"
+                    class="text-red-500 text-sm">
+                    La categoria es obligatoria
+                </span>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="form-control mt-6">
+                <button type="submit" class="btn btn-primary" [disabled]="productoForm.invalid">
+                    {{   editMode ? 'Actualizar Producto' : 'Registrar Producto'}}
+                </button>
+                <button type="button" (click)="cancelEdit()" class="btn btn-ghost mt-4" *ngIf="editMode">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabla de Productos -->
+    <div class="overflow-x-auto w-full max-w-4xl">
+        <h3 class="text-xl font-bold text-center mb-4">Lista de Productos</h3>
+        <table class="table table-zebra w-full">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let producto of productos; index as i">
+                    <td>{{ producto.idProducto }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.descripcion }}</td>
+                    <td>{{ producto.precio }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>{{ producto.categoria_id }}</td>
+
+                    <td class="p-2 flex align-items-center gap-2">
+                        <button class="btn btn-sm btn-primary mr-2" (click)="onEdit(producto)">Editar</button>
+                        <button class="btn btn-sm btn-error" (click)="onDelete(producto.idProducto)">Eliminar</button>
+                    </td>
+                </tr>
+                <tr *ngIf="productos.length === 0">
+                    <td colspan="6" class="text-center">No hay productos registrados</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

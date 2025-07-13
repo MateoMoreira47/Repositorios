@@ -1,0 +1,32 @@
+<div class="flex flex-col items-center mt-10">
+    <!-- Encabezado -->
+    <h2 class="text-3xl font-bold mb-6">Listado de Compras</h2>
+
+    <!-- Compras -->
+    <div class="w-full max-w-4xl space-y-6">
+      <div *ngFor="let compra of compras" class="card bg-base-100 shadow-md">
+        <div class="card-body">
+          <h3 class="text-lg font-bold">Compra {{ compra.idCompra }}</h3>
+          <p class="text-sm text-gray-500">Fecha: {{ compra.fecha | date: 'medium' }}</p>
+          <p class="text-sm text-gray-500">Total: {{ compra.total | currency: 'USD' }}</p>
+          <p class="text-sm text-gray-500">Metodo de Pago: {{ compra.MetodoPago.tipo }}</p>
+
+          <!-- Detalle de Productos -->
+          <div class="mt-4">
+            <h4 class="font-semibold">Productos:</h4>
+            <div *ngFor="let producto of compra.CompraProductos" class="flex items-start mt-2">
+              <div class="w-16 h-16 bg-gray-200 flex-shrink-0 rounded-lg overflow-hidden">
+                <img [src]="producto.Producto.imagen" class="w-full h-full object-cover rounded-lg">
+              </div>
+              <div class="ml-4">
+                <h5 class="font-bold">{{ producto.nombre }}</h5>
+                <p class="text-sm">{{ producto.descripcion }}</p>
+                <p class="text-sm">Cantidad: {{ producto.cantidad }}</p>
+                <p class="text-sm">Subtotal: {{ producto.total | currency: 'USD' }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

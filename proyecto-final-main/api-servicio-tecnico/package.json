@@ -1,0 +1,26 @@
+{
+  "name": "backend-servicio-tecnico",
+  "version": "1.0.0",
+  "description": "Backend para un servicio tecnico",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node --env-file=.env --watch src/index.js",
+    "dev": "node --env-file=.env src/index.js"
+
+  },
+  "type": "module",
+  "keywords": [
+    "servicio",
+    "tecnico",
+    "api",
+    "rest"
+  ],
+  "author": "Barlon Marriga",
+  "license": "ISC",
+  "dependencies": {
+    "@sequelize/postgres": "^7.0.0-alpha.43",
+    "cors": "^2.8.5",
+    "express": "^4.21.1",
+    "sequelize": "^6.37.5"
+  }
+}

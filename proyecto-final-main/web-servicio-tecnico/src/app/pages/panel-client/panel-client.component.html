@@ -1,0 +1,19 @@
+<section class="flex">
+    <!-- Sidebar -->
+    <div class="w-64 shadow-md">
+        <div class="p-4 text-xl font-bold text-center border-b border-gray-200">
+            Panel de Cliente
+        </div>
+        <ul class="menu p-4 w-full">
+            <li><a [routerLink]="['/panel-client/nueva-cita']" routerLinkActive="router-link-active"  class="text-gray-400 hover:text-blue-500">Citas</a></li>
+            <li><a [routerLink]="['/panel-client/mis-compras']" routerLinkActive="router-link-active"  class="text-gray-400 hover:text-blue-500">Mis Compras</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-blue-500" (click)="logout()">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <section class="flex-1 p-6">
+        <router-outlet></router-outlet>
+    </section>
+
+</section>

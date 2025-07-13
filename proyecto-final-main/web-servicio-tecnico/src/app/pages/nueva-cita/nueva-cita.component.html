@@ -1,0 +1,98 @@
+<div class="flex flex-col items-center mt-10">
+    <!-- Formulario de Registro -->
+    <div class="card bg-base-100 shadow-xl w-full max-w-lg p-6 mb-10">
+        <h2 class="text-2xl font-bold text-center mb-4">Registrar Cita</h2>
+
+        <form [formGroup]="citaForm" (ngSubmit)="onSubmit()">
+            <!-- ID Empleado -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text"> Empleado</span>
+                </label>
+                <select class="input input-bordered" formControlName="idEmpleado">
+                    <option value="">Seleccione un empleado</option>
+                    <option *ngFor="let empleado of empleados" [value]="empleado.idEmpleado"> {{ empleado.cedula }} - {{ empleado.nombre }} {{
+                        empleado.apellido }}</option>
+                </select>
+                <span *ngIf="citaForm.get('idEmpleado')?.invalid && citaForm.get('idEmpleado')?.touched"
+                    class="text-red-500 text-sm">
+                    El empleado es obligatorio.
+                </span>
+            </div>
+
+            <!-- ID Cliente -->
+            <div class="form-control mb-4" *ngIf="role === 'ADMIN'">
+                <label class="label">
+                    <span class="label-text"> Cliente</span>
+                </label>
+                <select id="ciudad_id" class="input input-bordered" formControlName="idCliente">
+                    <option value="">Seleccione un cliente</option>
+                    <option *ngFor="let cliente of clientes" [value]="cliente.idCliente">{{ cliente.cedula }} - {{ cliente.nombre }} {{
+                        cliente.apellido }}</option>
+                </select>
+                <span *ngIf="citaForm.get('idCliente')?.invalid && citaForm.get('idCliente')?.touched"
+                    class="text-red-500 text-sm">
+                    El cliente es obligatorio.
+                </span>
+            </div>
+
+            <!-- Fecha -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Fecha</span>
+                </label>
+                <input type="datetime-local" class="input input-bordered" formControlName="fecha" />
+                <span *ngIf="citaForm.get('fecha')?.invalid && citaForm.get('fecha')?.touched"
+                    class="text-red-500 text-sm">
+                    La fecha es obligatoria.
+                </span>
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-control mb-4">
+                <label class="label">
+                    <span class="label-text">Descripción</span>
+                </label>
+                <textarea class="textarea textarea-bordered" formControlName="descripcion"
+                    placeholder="Ingrese la descripción"></textarea>
+                <span *ngIf="citaForm.get('descripcion')?.invalid && citaForm.get('descripcion')?.touched"
+                    class="text-red-500 text-sm">
+                    La descripción es obligatoria.
+                </span>
+            </div>
+
+            <!-- Botón de Envío -->
+            <div class="form-control mt-6">
+                <button type="submit" class="btn btn-primary" [disabled]="citaForm.invalid">
+                    Registrar Cita
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Tabla de Citas -->
+    <div class="overflow-x-auto w-full max-w-4xl">
+        <h3 class="text-xl font-bold text-center mb-4">Lista de Citas</h3>
+        <table class="table table-zebra w-full">
+            <thead>
+                <tr>
+                    <th>Empleado</th>
+                    <th>Cliente</th>
+                    <th>Fecha</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cita of citas">
+                    <td>{{ cita.Empleado.nombre }} {{ cita.Empleado.apellido }}</td>
+                    <td>{{ cita.Cliente.nombre }} {{ cita.Cliente.apellido }}</td>
+                    <td>{{ cita.fecha | date: 'short' }}</td>
+                    <td>{{ cita.descripcion }}</td>
+                </tr>
+                <tr *ngIf="citas.length === 0">
+                    <td colspan="4" class="text-center">No hay citas registradas</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

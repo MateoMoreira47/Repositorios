@@ -1,0 +1,49 @@
+<section class="py-16 max-w-4xl mx-auto">
+    <h1 class="text-4xl font-bold text-center mb-8">Acerca de Nosotros</h1>
+
+    <!-- Descripción -->
+    <div class="mb-12">
+        <p class="text-lg text-center">
+            En <strong>Servicio Técnico</strong>, nos dedicamos a ofrecer soluciones confiables y personalizadas en el
+            área de tecnología. Con años de experiencia, nuestro objetivo es garantizar que tus equipos funcionen de
+            manera óptima.
+        </p>
+    </div>
+
+    <!-- Misión, Visión y Valores -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div class="text-center p-6 bg-base-100 shadow-lg rounded-lg">
+            <h3 class="text-xl font-bold mb-4">Misión</h3>
+            <p class="text-sm">
+                Proporcionar servicios técnicos de alta calidad, asegurando la satisfacción y confianza de nuestros
+                clientes.
+            </p>
+        </div>
+        <div class="text-center p-6 bg-base-100 shadow-lg rounded-lg">
+            <h3 class="text-xl font-bold mb-4">Visión</h3>
+            <p class="text-sm">
+                Ser la empresa líder en soluciones tecnológicas, reconocida por su excelencia e innovación en el
+                servicio técnico.
+            </p>
+        </div>
+        <div class="text-center p-6 bg-base-100 shadow-lg rounded-lg">
+            <h3 class="text-xl font-bold mb-4">Valores</h3>
+            <p class="text-sm">
+                Compromiso, honestidad, innovación y trabajo en equipo.
+            </p>
+        </div>
+    </div>
+
+    <!-- Equipo -->
+    <div *ngIf="empleados.length">
+        <h2 class="text-2xl font-bold text-center mb-8">Nuestro Equipo</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center" *ngFor="let item of empleados">
+                <img class="w-24 h-24 mx-auto rounded-full mb-4" src="https://placehold.co/200"
+                    alt="Miembro del equipo">
+                <h4 class="text-lg font-bold">{{ item.nombre }} {{ item.apellido }}</h4>
+                <p class="text-sm text-gray-600">{{ item.especialidad }} </p>
+            </div>
+        </div>
+    </div>
+</section>

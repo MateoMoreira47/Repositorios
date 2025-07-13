@@ -1,0 +1,128 @@
+<section class="py-10">
+    <h2 class="text-3xl font-bold text-center mb-8">Registrar Cliente</h2>
+    <div class="max-w-md mx-auto p-8 shadow-lg rounded-lg">
+        <form [formGroup]="registroForm" (ngSubmit)="onSubmit()" autocomplete="off">
+            <!-- Cédula -->
+            <div class="form-control mb-4">
+                <label for="cedula" class="label">
+                    <span class="label-text">Cédula</span>
+                </label>
+                <input id="cedula"  maxlength="10" type="text" class="input input-bordered" formControlName="cedula">
+                <div *ngIf="registroForm.get('cedula')?.invalid && registroForm.get('cedula')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('cedula')?.errors?.['required']">La cédula es obligatoria.</span>
+                </div>
+            </div>
+
+            <!-- Nombre -->
+            <div class="form-control mb-4">
+                <label for="nombre" class="label">
+                    <span class="label-text">Nombre</span>
+                </label>
+                <input id="nombre" type="text" class="input input-bordered" formControlName="nombre">
+                <div *ngIf="registroForm.get('nombre')?.invalid && registroForm.get('nombre')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('nombre')?.errors?.['required']">El nombre es obligatorio.</span>
+                </div>
+            </div>
+
+            <!-- Apellido -->
+            <div class="form-control mb-4">
+                <label for="apellido" class="label">
+                    <span class="label-text">Apellido</span>
+                </label>
+                <input id="apellido" type="text" class="input input-bordered" formControlName="apellido">
+                <div *ngIf="registroForm.get('apellido')?.invalid && registroForm.get('apellido')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('apellido')?.errors?.['required']">El apellido es obligatorio.</span>
+                </div>
+            </div>
+
+            <!-- Dirección -->
+            <div class="form-control mb-4">
+                <label for="direccion" class="label">
+                    <span class="label-text">Dirección</span>
+                </label>
+                <input id="direccion" type="text" class="input input-bordered" formControlName="direccion">
+                <div *ngIf="registroForm.get('direccion')?.invalid && registroForm.get('direccion')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('direccion')?.errors?.['required']">La dirección es
+                        obligatoria.</span>
+                </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="form-control mb-4">
+                <label for="telefono" class="label">
+                    <span class="label-text">Teléfono</span>
+                </label>
+                <input id="telefono" type="tel" class="input input-bordered" formControlName="telefono">
+                <div *ngIf="registroForm.get('telefono')?.invalid && registroForm.get('telefono')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('telefono')?.errors?.['required']">El teléfono es obligatorio.</span>
+                    <span *ngIf="registroForm.get('telefono')?.errors?.['pattern']">El teléfono debe ser válido.</span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-control mb-4">
+                <label for="email" class="label">
+                    <span class="label-text">Correo Electrónico</span>
+                </label>
+                <input id="email" type="email" class="input input-bordered" formControlName="email">
+                <div *ngIf="registroForm.get('email')?.invalid && registroForm.get('email')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('email')?.errors?.['required']">El correo electrónico es
+                        obligatorio.</span>
+                    <span *ngIf="registroForm.get('email')?.errors?.['email']">El correo electrónico no es
+                        válido.</span>
+                </div>
+            </div>
+
+            <!-- Contraseña -->
+            <div class="form-control mb-4">
+                <label for="password" class="label">
+                    <span class="label-text">Contraseña</span>
+                </label>
+                <input id="password" type="password" class="input input-bordered" formControlName="password">
+                <div *ngIf="registroForm.get('password')?.invalid && registroForm.get('password')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('password')?.errors?.['required']">La contraseña es
+                        obligatoria.</span>
+                    <span *ngIf="registroForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos
+                        6 caracteres.</span>
+                </div>
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <div class="form-control mb-4">
+                <label for="fechaNac" class="label">
+                    <span class="label-text">Fecha de Nacimiento</span>
+                </label>
+                <input id="fechaNac" type="date" class="input input-bordered" formControlName="fechaNac">
+                <div *ngIf="registroForm.get('fechaNac')?.invalid && registroForm.get('fechaNac')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('fechaNac')?.errors?.['required']">La fecha de nacimiento es
+                        obligatoria.</span>
+                </div>
+            </div>
+
+            <!-- Ciudad -->
+            <div class="form-control mb-4">
+                <label for="ciudad_id" class="label">
+                    <span class="label-text">Ciudad</span>
+                </label>
+                <select id="ciudad_id" class="input input-bordered" formControlName="ciudad_id">
+                    <option value="">Seleccione una ciudad</option>
+                    <option *ngFor="let ciudad of cities" [value]="ciudad.idciudad">{{ ciudad.nombre }}</option>
+                </select>
+                <div *ngIf="registroForm.get('ciudad_id')?.invalid && registroForm.get('ciudad_id')?.touched"
+                    class="text-red-500 text-sm mt-1">
+                    <span *ngIf="registroForm.get('ciudad_id')?.errors?.['required']">La ciudad es obligatoria.</span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full" [disabled]="registroForm.invalid">Registrar</button>
+        </form>
+    </div>
+</section>

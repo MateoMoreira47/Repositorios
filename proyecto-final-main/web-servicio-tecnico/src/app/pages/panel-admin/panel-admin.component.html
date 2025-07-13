@@ -1,0 +1,21 @@
+<section class="flex">
+    <!-- Sidebar -->
+    <div class="w-64 shadow-md">
+        <div class="p-4 text-xl font-bold text-center border-b border-gray-200">
+            Panel Administracion
+        </div>
+        <ul class="menu p-4 w-full">
+            <li><a [routerLink]="['/panel-admin/empleados']" routerLinkActive="router-link-active"  class="text-gray-400 hover:text-blue-500">Empleados</a></li>
+            <li><a [routerLink]="['/panel-admin/citas']" routerLinkActive="router-link-active" class="text-gray-400 hover:text-blue-500">Citas</a></li>
+            <li><a [routerLink]="['/panel-admin/categorias']" routerLinkActive="router-link-active" class="text-gray-400 hover:text-blue-500">Categorias</a></li>
+            <li><a [routerLink]="['/panel-admin/productos']" routerLinkActive="router-link-active" class="text-gray-400 hover:text-blue-500">Productos</a></li>
+            <li><a [routerLink]="['/panel-admin/compras']" routerLinkActive="router-link-active" class="text-gray-400 hover:text-blue-500">Compras</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-blue-500" (click)="logout()">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <section class="flex-1 p-6">
+        <router-outlet></router-outlet>
+    </section>
+</section>

@@ -1,0 +1,345 @@
+openapi: 3.0.0
+info:
+  title: Servicio Tecnico 
+  description: Proyecto desarrollado para la creacion de un sistema para servicio tecnico 
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+    description: Servidor local de desarrollo
+paths:
+  /ciudades:
+    get:
+      summary: Obtener todas las ciudades
+      responses:
+        '200':
+          description: Lista de ciudades.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ciudad'
+    post:
+      summary: Crear una nueva ciudad
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ciudad'
+      responses:
+        '201':
+          description: Ciudad creada correctamente.
+  /ciudades/{id}:
+    get:
+      summary: Obtener una ciudad por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ciudad encontrada.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ciudad'
+        '404':
+          description: Ciudad no encontrada.
+    put:
+      summary: Actualizar una ciudad por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Ciudad'
+      responses:
+        '200':
+          description: Ciudad actualizada correctamente.
+    delete:
+      summary: Eliminar una ciudad por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Ciudad eliminada correctamente.
+  /clientes:
+    get:
+      summary: Obtener todos los clientes
+      responses:
+        '200':
+          description: Lista de clientes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+    post:
+      summary: Crear un nuevo cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '201':
+          description: Cliente creado correctamente.
+  /clientes/{id}:
+    get:
+      summary: Obtener un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cliente encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '404':
+          description: Cliente no encontrado.
+    put:
+      summary: Actualizar un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cliente'
+      responses:
+        '200':
+          description: Cliente actualizado correctamente.
+    delete:
+      summary: Eliminar un cliente por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Cliente eliminado correctamente.
+  /empleados:
+    get:
+      summary: Obtener todos los empleados
+      responses:
+        '200':
+          description: Lista de empleados.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Empleado'
+    post:
+      summary: Crear un nuevo empleado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empleado'
+      responses:
+        '201':
+          description: Empleado creado correctamente.
+  /empleados/{id}:
+    get:
+      summary: Obtener un empleado por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Empleado encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empleado'
+        '404':
+          description: Empleado no encontrado.
+    put:
+      summary: Actualizar un empleado por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empleado'
+      responses:
+        '200':
+          description: Empleado actualizado correctamente.
+    delete:
+      summary: Eliminar un empleado por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Empleado eliminado correctamente.
+  /productos:
+    get:
+      summary: Obtener todos los productos
+      responses:
+        '200':
+          description: Lista de productos.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Producto'
+    post:
+      summary: Crear un nuevo producto
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+      responses:
+        '201':
+          description: Producto creado correctamente.
+  /productos/{id}:
+    get:
+      summary: Obtener un producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Producto encontrado.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Producto'
+        '404':
+          description: Producto no encontrado.
+    put:
+      summary: Actualizar un producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Producto'
+      responses:
+        '200':
+          description: Producto actualizado correctamente.
+    delete:
+      summary: Eliminar un producto por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Producto eliminado correctamente.
+components:
+  schemas:
+    Ciudad:
+      type: object
+      properties:
+        idCiudad:
+          type: integer
+        nombre:
+          type: string
+    Cliente:
+      type: object
+      properties:
+        idCliente:
+          type: integer
+        cedula:
+          type: string
+        nombre:
+          type: string
+        apellido:
+          type: string
+        direccion:
+          type: string
+        telefono:
+          type: string
+        email:
+          type: string
+        fechaNac:
+          type: string
+          format: date
+        ciudad_id:
+          type: integer
+    Empleado:
+      type: object
+      properties:
+        idEmpleado:
+          type: integer
+        cedula:
+          type: string
+        nombre:
+          type: string
+        apellido:
+          type: string
+        especialidad:
+          type: string
+    Producto:
+      type: object
+      properties:
+        idProducto:
+          type: integer
+        nombre:
+          type: string
+        descripcion:
+          type: string
+        precio:
+          type: number
+          format: double
+        stock:
+          type: integer
+        categoria_id:
+          type: integer

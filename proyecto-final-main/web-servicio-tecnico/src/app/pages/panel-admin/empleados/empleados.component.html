@@ -1,0 +1,96 @@
+<section>
+    <div class="flex justify-center mt-10">
+        <div class="card bg-base-100 shadow-xl w-full max-w-lg p-6">
+            <h2 class="text-2xl font-bold text-center mb-4">Registrar Empleado</h2>
+
+            <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()">
+                <!-- Cédula -->
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text">Cédula</span>
+                    </label>
+                    <input type="text" class="input input-bordered" formControlName="cedula" maxlength="10"
+                        placeholder="Ingrese la cédula" />
+                    <span *ngIf="empleadoForm.get('cedula')?.invalid && empleadoForm.get('cedula')?.touched"
+                        class="text-red-500 text-sm">
+                        La cédula es obligatoria y debe ser numérica.
+                    </span>
+                </div>
+
+                <!-- Nombre -->
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text">Nombre</span>
+                    </label>
+                    <input type="text" class="input input-bordered" formControlName="nombre"
+                        placeholder="Ingrese el nombre" />
+                    <span *ngIf="empleadoForm.get('nombre')?.invalid && empleadoForm.get('nombre')?.touched"
+                        class="text-red-500 text-sm">
+                        El nombre es obligatorio.
+                    </span>
+                </div>
+
+                <!-- Apellido -->
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text">Apellido</span>
+                    </label>
+                    <input type="text" class="input input-bordered" formControlName="apellido"
+                        placeholder="Ingrese el apellido" />
+                    <span *ngIf="empleadoForm.get('apellido')?.invalid && empleadoForm.get('apellido')?.touched"
+                        class="text-red-500 text-sm">
+                        El apellido es obligatorio.
+                    </span>
+                </div>
+
+                <!-- Especialidad -->
+                <div class="form-control mb-4">
+                    <label class="label">
+                        <span class="label-text">Especialidad</span>
+                    </label>
+                    <input type="text" class="input input-bordered" formControlName="especialidad"
+                        placeholder="Ingrese la especialidad" />
+                    <span *ngIf="empleadoForm.get('especialidad')?.invalid && empleadoForm.get('especialidad')?.touched"
+                        class="text-red-500 text-sm">
+                        La especialidad es obligatoria.
+                    </span>
+                </div>
+
+                <!-- Botón de envío -->
+                <div class="form-control mt-6">
+                    <button type="submit" class="btn btn-primary" [disabled]="empleadoForm.invalid">
+                        Registrar Empleado
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<h3 class="text-xl font-bold text-center mt-10">Lista de Empleados</h3>
+
+<div class="flex flex-coljustify-center mt-10 overflow-x-auto w-full">
+    <table class="table table-zebra w-full">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cédula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Especialidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of empleados">
+                <td>{{ empleado.idEmpleado }}</td>
+                <td>{{ empleado.cedula }}</td>
+                <td>{{ empleado.nombre }}</td>
+                <td>{{ empleado.apellido }}</td>
+                <td>{{ empleado.especialidad }}</td>
+            </tr>
+            <tr *ngIf="empleados.length === 0">
+                <td colspan="4" class="text-center">No hay empleados registrados</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
