@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal</title>
+ </head>
+ <body>
+ <h2>Ejemplo de Modal</h2>
+ <button id="openModal">Abrir Modal</button>
+
+ <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Hola, soy un Modal</h2>
+        <p>Este es el contenido del modal.</p>
+    </div>
+ </div>
+
+ <script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+ </script>
+ </body>
+ </html>

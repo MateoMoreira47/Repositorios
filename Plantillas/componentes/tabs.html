@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+</head>
+<body>
+ <h2>Tabs</h2>
+<button class="tab-boton" onclick="openTab(event, 'Tab1')">Tab 1</button>
+<button class="tab-boton" onclick="openTab(event, 'Tab2')">Tab 2</button>
+<button class="tab-boton" onclick="openTab(event, 'Tab3')">Tab 3</button>
+
+<div id="Tab1" class="tab active">
+    <h3>Contenido de Tab 1</h3>
+    <p>Este es el contenido del primer tab.</p>
+</div>
+
+<div id="Tab2" class="tab">
+    <h3>Contenido de Tab 2</h3>
+    <p>Este es el contenido del segundo tab.</p>
+</div>
+
+<div id="Tab3" class="tab">
+    <h3>Contenido de Tab 3</h3>
+    <p>Este es el contenido del tercer tab.</p>
+ </div>
+
+ <script>
+    function openTab(evt, tabName) {
+        var i, tab, buttons;
+        tab = document.getElementsByClassName("tab");
+        for (i = 0; i < tab.length; i++) {
+            tab[i].style.display = "none";  
+        }
+        buttons = document.getElementsByClassName("tab-boton");
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].className = buttons[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";  
+        evt.currentTarget.className += " active";
+    }
+ </script>  
+ </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acordeón</title>
+</head>
+<body>
+ <h2>Acordeón</h2>
+ <button class="acordion">Sección 1</button>
+ <div class="panel">
+    <p>Contenido de la sección 1.</p>
+ </div>
+
+ <button class="acordion">Sección 2</button>
+ <div class="panel">
+    <p>Contenido de la sección 2.</p>
+ </div>
+
+ <script>
+    var acc = document.getElementsByClassName("acordion");
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].onclick = function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        }
+    }
+ </script>
+ </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Componentes Reutilizables</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+ <div class="navbar">
+        <label for="toggle" class="menu-icon">&#9776;</label>
+        <ul class="nav-links">      
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </div>
+ <h1 class="titulos">Plantilla Básica de Componentes</h1>
+   
+ <p> Esta es una colección de componentes </p>
+  
+ <div class="encuesta"> 
+ <h1 class="titulos">Encuesta</h1>
+        <form id="formEncuesta">
+            <!--estructura de preguntas-->
+            <label for="sabor">¿Te gusta el helado?</label><br>
+            <input type="radio" id="si" name="gustaHelado" value="Sí" required>
+            <label for="si">Sí</label><br>
+            <input type="radio" id="no" name="gustaHelado" value="No">
+            <label for="no">No</label><br><br>
+
+            <label for="sabor">¿Cuál es tu sabor de helado favorito?</label><br>
+            <!--seleccion de respuestas-->
+            <select id="sabor" name="sabor" required>
+                <option value="vainilla">Vainilla</option>
+                <option value="chocolate">Chocolate</option>
+                <option value="menta">Menta</option>
+                <option value="chocomenta">Choco-Menta</option>
+                <option value="pistacho">Pistacho</option>
+                <option value="fresa">Fresa</option>
+                <option value="cookies">Oreo</option>
+                <option value="chicle">Chicle</option>
+                <option value="mora">Mora</option>
+                <option value="durazno">Durazno</option>
+            </select><br><br>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('formEncuesta').onsubmit = function(event) {
+            event.preventDefault();
+            alert('¡Gracias por participar!');
+        };
+    </script>
+
+ <div class= "tarjeta">
+    <img src="Imagenes/card1.jpg">
+    <h2 class="titulos">Título de la tarjeta</h2>
+    <p>Añadir descripción aquí</p>
+    <button class="btn primary">Ver más</button>
+ </div>
+
+ <!-- Modal-->
+ <h2>Ejemplo de Modal</h2>
+ <button id="openModal">Abrir Modal</button>
+
+ <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Hola, soy un Modal</h2>
+        <p>Este es el contenido del modal.</p>
+    </div>
+ </div>
+
+ <script>
+    var modal = document.getElementById("myModal");
+    var btn = document.getElementById("openModal");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+  </script>
+
+ <!-- Acordeon-->
+ <h2>Acordeón</h2>
+ <button class="acordion">Sección 1</button>
+ <div class="panel">
+    <p>Contenido de la sección 1.</p>
+ </div>
+
+ <button class="acordion">Sección 2</button>
+ <div class="panel">
+    <p>Contenido de la sección 2.</p>
+ </div>
+
+ <script>
+    var acc = document.getElementsByClassName("acordion");
+    for (let i = 0; i < acc.length; i++) {
+        acc[i].onclick = function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        }
+    }
+ </script>
+ <h2>Tabs</h2>
+ <button class="tab-boton" onclick="openTab(event, 'Tab1')">Tab 1</button>
+ <button class="tab-boton" onclick="openTab(event, 'Tab2')">Tab 2</button>
+ <button class="tab-boton" onclick="openTab(event, 'Tab3')">Tab 3</button>
+
+ <div id="Tab1" class="tab active">
+    <h3>Contenido de Tab 1</h3>
+    <p>Este es el contenido del primer tab.</p>
+ </div>
+
+ <div id="Tab2" class="tab">
+    <h3>Contenido de Tab 2</h3>
+    <p>Este es el contenido del segundo tab.</p>
+ </div>
+
+ <div id="Tab3" class="tab">
+    <h3>Contenido de Tab 3</h3>
+    <p>Este es el contenido del tercer tab.</p>
+ </div>
+
+ <script>
+    function openTab(evt, tabName) {
+        var i, tab, buttons;
+        tab = document.getElementsByClassName("tab");
+        for (i = 0; i < tab.length; i++) {
+            tab[i].style.display = "none";  
+        }
+        buttons = document.getElementsByClassName("tab-boton");
+        for (i = 0; i < buttons.length; i++) {
+            buttons[i].className = buttons[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";  
+        evt.currentTarget.className += " active";
+    }
+ </script>
+
+ <button class="boton-primario">Aceptar</button>
+ <button class="boton-secundario">Cancelar</button>
+ <button class="boton-danger">Eliminar</button>
+
+</body>
+</html>

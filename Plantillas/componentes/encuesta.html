@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta</title>
+</head>
+<body>
+ <div class="encuesta"> 
+    <h1 class="titulos">Encuesta</h1>
+    <form id="formEncuesta">
+        <label for="sabor">¿Te gusta el helado?</label><br>
+        <input type="radio" id="si" name="gustaHelado" value="Sí" required>
+        <label for="si">Sí</label><br>
+        <input type="radio" id="no" name="gustaHelado" value="No">
+        <label for="no">No</label><br><br>
+
+        <label for="sabor">¿Cuál es tu sabor de helado favorito?</label><br>
+        <select id="sabor" name="sabor" required>
+            <option value="vainilla">Vainilla</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="menta">Menta</option>
+            <option value="chocomenta">Choco-Menta</option>
+            <option value="pistacho">Pistacho</option>
+            <option value="fresa">Fresa</option>
+            <option value="cookies">Oreo</option>
+            <option value="chicle">Chicle</option>
+            <option value="mora">Mora</option>
+            <option value="durazno">Durazno</option>
+        </select><br><br>
+        <button type="submit">Enviar</button>
+    </form>
+    <script>
+        document.getElementById('formEncuesta').onsubmit = function(event) {
+            event.preventDefault();
+            alert('¡Gracias por participar!');
+        };
+    </script>
+</div>   
+</body>
+</html>
